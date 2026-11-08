@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f8fb">
+<title>Mohammed AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+<style>
+:root{color-scheme:dark;--bg:#090d18;--panel:#101727;--panel2:#141e31;--line:#26334b;--text:#eaf0ff;--muted:#94a3bd;--accent:#7c9cff;--accent2:#9b8cff;--green:#5ee0b5;--danger:#ff737e}
+*{box-sizing:border-box}body{margin:0;height:100dvh;overflow:hidden;background:radial-gradient(ellipse at 50% -30%,#1c2c52 0,transparent 55%),var(--bg);color:var(--text);font-family:"IBM Plex Sans Arabic",system-ui,sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer;transition:.18s ease}button:disabled{opacity:.45;cursor:not-allowed}
+.app{display:grid;grid-template-columns:270px minmax(0,1fr);height:100dvh}.sidebar{background:rgba(12,18,32,.92);border-left:1px solid var(--line);padding:18px 14px;display:flex;flex-direction:column;gap:16px;min-height:0}
+.brand{display:flex;align-items:center;gap:11px;padding:4px 5px 14px}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#7c9cff,#8d6bff);display:grid;place-items:center;font-size:22px;box-shadow:0 8px 28px #647cff30}.brand h1{font-size:17px;margin:0}.brand small{color:var(--muted);font-size:11px}
+.primary,.secondary,.icon-btn{border:1px solid var(--line);border-radius:12px;color:var(--text);background:var(--panel2);padding:10px 12px}.primary{background:linear-gradient(120deg,#7598ff,#9278ff);border:0;color:white;font-weight:700}.primary:hover{filter:brightness(1.08);transform:translateY(-1px)}.secondary:hover,.icon-btn:hover{border-color:#6579a6;background:#1a2740}
+.side-label{color:#7485a5;font-size:11px;font-weight:700;letter-spacing:.08em;padding:0 7px}.setting{display:flex;flex-direction:column;gap:7px}.setting label{font-size:12px;color:#bac6dd}.field{width:100%;min-width:0;background:#0b1220;border:1px solid var(--line);border-radius:10px;padding:10px 11px;color:var(--text);outline:none}.field:focus{border-color:#819dff;box-shadow:0 0 0 3px #819dff1c}.key-row{display:flex;gap:6px}.key-row .field{flex:1;width:0}.key-row button{white-space:nowrap;padding:8px 10px;font-size:12px}
+.status{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:7px}.dot{width:7px;height:7px;border-radius:50%;background:#f4c56a}.dot.good{background:var(--green);box-shadow:0 0 10px #5ee0b566}.divider{height:1px;background:var(--line);margin:2px 0}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;color:#c4cfe5}.switch{appearance:none;width:38px;height:22px;border-radius:20px;background:#34415a;position:relative;cursor:pointer;flex:none;transition:.2s}.switch:before{content:"";position:absolute;top:3px;right:3px;width:16px;height:16px;border-radius:50%;background:#e9efff;transition:.2s}.switch:checked{background:#718dff}.switch:checked:before{right:19px}
+.side-bottom{margin-top:auto;display:flex;flex-direction:column;gap:8px}.notice{font-size:11px;color:#8190ab;line-height:1.7}
+.main{display:flex;flex-direction:column;min-width:0;min-height:0}.topbar{height:68px;flex:none;display:flex;align-items:center;gap:12px;padding:0 24px;border-bottom:1px solid #253149aa;background:#0b1120b8;backdrop-filter:blur(14px)}.mobile-menu{display:none}.model-title{font-size:14px;font-weight:700}.model-sub{font-size:11px;color:var(--muted);margin-top:2px}.top-spacer{flex:1}.pill{font-size:11px;border:1px solid #31405d;color:#b7c8ff;border-radius:999px;padding:6px 10px;background:#111c31}
+.chat{flex:1;overflow-y:auto;scroll-behavior:smooth;padding:28px clamp(14px,4vw,56px) 30px}.welcome{max-width:760px;margin:7vh auto 0;text-align:center}.welcome-icon{margin:0 auto 20px;width:70px;height:70px;border:1px solid #394a72;border-radius:24px;background:linear-gradient(135deg,#1b2b4d,#19172f);display:grid;place-items:center;font-size:32px;box-shadow:0 20px 65px #0004}.welcome h2{font-size:clamp(25px,4vw,36px);margin:0 0 10px;letter-spacing:-.03em}.gradient{background:linear-gradient(100deg,#9db7ff,#c4a8ff,#77e7d0);-webkit-background-clip:text;background-clip:text;color:transparent}.welcome p{color:var(--muted);font-size:14px;line-height:1.9;margin:0 auto 25px;max-width:530px}.suggestions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:650px;margin:auto}.suggestion{background:#111a2b;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:right;color:#d9e3f8;font-size:13px;line-height:1.7}.suggestion:hover{border-color:#687fc0;background:#17223a}.suggestion span{display:block;color:#8798b9;font-size:11px;margin-top:3px}
+.message{max-width:900px;margin:0 auto 24px;display:flex;gap:12px;align-items:flex-start;animation:appear .22s ease}.message.user{flex-direction:row-reverse}.avatar{width:34px;height:34px;flex:none;border-radius:12px;display:grid;place-items:center;background:#192644;border:1px solid #31466e;font-size:16px}.user .avatar{background:#293e72;border-color:#4969b4}.message-body{min-width:0;max-width:calc(100% - 46px);flex:1}.message-head{display:flex;align-items:center;gap:9px;margin:2px 0 7px;font-size:11px;color:#94a4c1}.user .message-head{justify-content:flex-start}.bubble{font-size:14px;line-height:1.9;overflow-wrap:anywhere}.user .bubble{display:inline-block;background:#192849;border:1px solid #2e4677;padding:11px 15px;border-radius:17px 5px 17px 17px;white-space:pre-wrap}.assistant .bubble{padding:0 1px}.bubble p{margin:0 0 12px}.bubble p:last-child{margin-bottom:0}.bubble h1,.bubble h2,.bubble h3{line-height:1.5;margin:18px 0 8px}.bubble ul,.bubble ol{padding-right:23px}.bubble a{color:#9bb6ff}.bubble blockquote{margin:12px 0;border-right:3px solid #758fff;padding:5px 12px;color:#b3c2dd;background:#121c2f}.bubble pre{direction:ltr;text-align:left;position:relative;border:1px solid #293750;border-radius:12px;overflow:auto;padding:15px;background:#080d17}.bubble pre code{font-family:ui-monospace,Consolas,monospace;font-size:12px}.copy-code{position:absolute;top:7px;left:7px;background:#1c2940;border:1px solid #34445f;color:#d7e2f7;border-radius:7px;padding:4px 8px;font-size:10px}.inline-code{font-family:ui-monospace,monospace;background:#1a2540;border:1px solid #2d3c5c;padding:1px 5px;border-radius:5px;direction:ltr;display:inline-block}.bubble table{border-collapse:collapse;width:100%;display:block;overflow:auto}.bubble th,.bubble td{border:1px solid var(--line);padding:7px 10px;text-align:right}.bubble th{background:#17233a}
+.think-panel{border:1px solid #344363;border-radius:12px;background:#0d1424;margin-bottom:12px;overflow:hidden}.think-head{width:100%;display:flex;align-items:center;gap:8px;text-align:right;padding:10px 12px;background:transparent;color:#b8c8eb;border:0;font-size:12px}.think-head:hover{background:#131f35}.think-time{margin-right:auto;color:#81e4c5;font-variant-numeric:tabular-nums}.think-content{display:none;padding:12px;border-top:1px solid #263650;white-space:pre-wrap;color:#aebbd2;font-size:12px;line-height:1.8;overflow-wrap:anywhere}.think-content.open{display:block}.think-content .muted{color:#7e8eac}
+.typing{display:flex;align-items:center;gap:9px;color:#9cadd0;font-size:12px;padding:8px 0}.dots{display:flex;gap:4px}.dots i{width:5px;height:5px;background:#91aaff;border-radius:50%;animation:bounce 1s infinite}.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+.composer-wrap{padding:12px clamp(12px,4vw,56px) max(14px,env(safe-area-inset-bottom));background:linear-gradient(0deg,var(--bg) 70%,transparent)}.composer{max-width:900px;margin:auto;border:1px solid #33415c;background:#111a2b;border-radius:19px;padding:10px;box-shadow:0 16px 45px #0003}.composer:focus-within{border-color:#607bc0;box-shadow:0 0 0 3px #718fff13,0 16px 45px #0003}.composer textarea{display:block;width:100%;resize:none;max-height:180px;min-height:44px;background:transparent;border:0;outline:0;color:var(--text);padding:8px 9px;font-size:14px;line-height:1.7}.composer textarea::placeholder{color:#7485a4}.composer-bottom{display:flex;align-items:center;gap:8px;padding:3px 3px 0}.hint{font-size:10px;color:#7787a6;flex:1}.think-chip{display:flex;align-items:center;gap:6px;color:#bdcaff;font-size:11px;background:#1b2740;border:1px solid #35486f;border-radius:9px;padding:7px 9px}.think-chip.active{background:#263660;border-color:#758fff}.send{width:38px;height:38px;border:0;border-radius:12px;background:linear-gradient(135deg,#789bff,#9278ff);color:white;font-size:17px}.send:hover{filter:brightness(1.1)}.send svg{width:18px;height:18px;vertical-align:middle}
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);padding:10px 15px;border:1px solid #384866;background:#17233a;color:#e5ecff;border-radius:12px;font-size:12px;z-index:10;box-shadow:0 12px 30px #0005}
+@keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:.45}30%{transform:translateY(-4px);opacity:1}}
+/* Replit-style live thinking brain */
+.think-head.live{position:relative;min-height:52px;background:linear-gradient(90deg,rgba(20,31,55,.72),rgba(34,24,64,.55),rgba(20,31,55,.72));overflow:hidden}
+.think-head.live:after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 20%,rgba(145,171,255,.14) 48%,transparent 72%);transform:translateX(-100%);animation:thinkSweep 1.7s linear infinite;pointer-events:none}
+.brain-wrap{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;position:relative;flex:none;filter:drop-shadow(0 0 8px rgba(126,154,255,.55))}
+.brain-wrap:before{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid rgba(145,168,255,.55);box-shadow:0 0 18px rgba(126,154,255,.35),inset 0 0 12px rgba(155,140,255,.22);animation:brainPulse 1.1s ease-in-out infinite}
+.brain-icon{font-size:25px;line-height:1;display:block;animation:brainThink .8s ease-in-out infinite alternate}
+.thinking-word{font-weight:800;letter-spacing:.02em;background:linear-gradient(90deg,#a9c0ff,#c7a9ff,#7de7d2,#a9c0ff);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:thinkingColor 2s linear infinite}
+.thinking-sub{display:block;font-size:9px;color:#7f91b4;margin-top:2px;font-weight:500}
+.think-pulse{width:6px;height:6px;border-radius:50%;background:#7ee6cb;box-shadow:0 0 12px #7ee6cb;animation:thinkDot 1s ease-in-out infinite}
+@keyframes brainThink{0%{transform:scale(1) rotate(-2deg)}100%{transform:scale(1.12) rotate(2deg)}}
+@keyframes brainPulse{0%,100%{transform:scale(.9);opacity:.45}50%{transform:scale(1.12);opacity:1}}
+@keyframes thinkingColor{to{background-position:220% center}}
+@keyframes thinkSweep{to{transform:translateX(100%)}}
+@keyframes thinkDot{0%,100%{transform:scale(.65);opacity:.45}50%{transform:scale(1.25);opacity:1}}
+@keyframes appear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+
+.attach-wrap{position:relative;flex:none}.attach-menu{position:absolute;bottom:46px;right:0;display:none;min-width:170px;padding:6px;background:#111a2b;border:1px solid #35486f;border-radius:12px;box-shadow:0 15px 40px #0007;z-index:30}.attach-menu.open{display:flex;flex-direction:column;gap:4px}.attach-menu button{border:0;background:transparent;color:#dce6fa;text-align:right;padding:9px 10px;border-radius:8px;font-size:11px}.attach-menu button:hover{background:#1b2942}.attach-plus{width:38px;height:38px;padding:0;display:grid;place-items:center;font-size:22px;border-radius:12px;flex:none}.thumb-chip{display:flex;align-items:center;gap:7px;border:1px solid #35486f;background:#17233a;color:#cbd7f0;border-radius:10px;padding:5px 7px;font-size:10px;max-width:210px}.thumb-chip img{width:34px;height:34px;object-fit:cover;border-radius:7px;border:1px solid #3b4c6e}.thumb-chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sent-image{display:block;width:min(260px,100%);max-height:300px;object-fit:cover;border-radius:12px;border:1px solid #344363;margin:8px 0}.sent-images{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.attachments{display:flex;flex-wrap:wrap;gap:6px;max-width:100%;align-items:center}
+.file-chip{display:flex;align-items:center;gap:6px;border:1px solid #35486f;background:#17233a;color:#cbd7f0;border-radius:9px;padding:6px 8px;font-size:10px;max-width:190px}
+.file-chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.file-chip button{border:0;background:transparent;color:#91a0bb;font-size:13px;padding:0}
+.live-think{border:1px solid #344363;border-radius:12px;background:#0d1424;margin-bottom:12px;overflow:hidden}.live-think .think-head{cursor:pointer}.live-think .think-content{display:block;max-height:190px;overflow:auto}
+.skip-analysis{margin-right:auto;border:1px solid #4d628d;background:#182844;color:#dce7ff;border-radius:9px;padding:6px 10px;font-size:10px}.skip-analysis:hover{background:#24375d}
+.polli-card{margin-top:10px;padding:12px;border:1px solid #344363;border-radius:15px;background:#0d1628;overflow:hidden}.polli-preview{position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:linear-gradient(120deg,#101b31,#182846,#101b31);background-size:220% 220%;animation:polliBg 2.2s ease-in-out infinite}.polli-preview:before{content:"";position:absolute;inset:-30%;background:radial-gradient(circle,rgba(130,156,255,.28) 0 2px,transparent 3px);background-size:28px 28px;animation:polliDots 1.2s linear infinite;opacity:.8}.polli-scan{position:absolute;left:0;right:0;height:3px;top:0;background:linear-gradient(90deg,transparent,#8fa9ff,transparent);box-shadow:0 0 18px #8fa9ff;animation:polliScan 1.8s ease-in-out infinite}.polli-loading{position:absolute;inset:0;display:grid;place-items:center;color:#dbe6ff;font-size:12px;font-weight:700}.polli-loading span{display:inline-flex;gap:4px;align-items:center}.polli-loading i{width:5px;height:5px;border-radius:50%;background:#a8baff;animation:polliDot .8s infinite alternate}.polli-loading i:nth-child(2){animation-delay:.18s}.polli-loading i:nth-child(3){animation-delay:.36s}.polli-card.done .polli-preview{animation:none;background:#080d18}.polli-card.done .polli-preview:before,.polli-card.done .polli-scan{display:none}.polli-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.035);transition:opacity .5s ease,transform .7s ease}.polli-card.done img{opacity:1;transform:scale(1)}.polli-actions{display:flex;gap:8px;margin-top:9px}.polli-actions a{flex:1;text-align:center;text-decoration:none}.polli-actions button{flex:1;text-align:center}.polli-viewer{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:1000;display:none;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(8px)}.polli-viewer.open{display:flex}.polli-viewer-box{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:none}.polli-viewer img{max-width:96vw;max-height:88vh;width:auto;height:auto;object-fit:contain;border-radius:12px;box-shadow:0 20px 80px #000b;user-select:none;cursor:zoom-out;transition:transform .18s ease}.polli-viewer-close{position:absolute;top:10px;right:10px;width:44px;height:44px;border:1px solid #465b84;background:#17233a;color:#fff;border-radius:12px;font-size:22px;z-index:2}.polli-viewer-close:hover{background:#263a60}.polli-viewer-hint{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);color:#c8d4ec;background:#111a2bdd;border:1px solid #344363;border-radius:999px;padding:7px 12px;font-size:10px}.polli-status{font-size:11px;color:#9cadd0;margin-top:8px;line-height:1.6}@keyframes polliBg{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}@keyframes polliDots{to{transform:translate(28px,28px)}}@keyframes polliScan{0%{top:-5%}100%{top:105%}}@keyframes polliDot{to{transform:translateY(-4px);opacity:.35}}
+
+
+.code-file{border:1px solid #344363;border-radius:12px;background:#0a101d;margin:10px 0;overflow:hidden;direction:ltr}.code-file-head{display:flex;align-items:center;gap:8px;padding:9px 11px;background:#121c2f;border-bottom:1px solid #2b3b58;color:#cbd7f0;font-size:11px}.code-file-head .code-lang{color:#8294b5}.code-file-head .code-status{margin-left:auto;color:#6fe0b6;font-size:10px}.code-copy{margin-left:auto;background:#1b2942;border:1px solid #3a4d70;color:#dbe6fb;border-radius:7px;padding:4px 9px;font-size:10px}.code-copy:hover{background:#25385a}.code-file-body{margin:0;padding:12px;max-height:420px;overflow:auto;white-space:pre;font-family:ui-monospace,Consolas,monospace;font-size:12px;line-height:1.6;color:#dce6fa}
+@media(max-width:780px){.attachments{width:100%}.composer-bottom{flex-wrap:wrap}.hint{order:5;width:100%}}
+@media(max-width:780px){.app{grid-template-columns:1fr}.sidebar{display:none;position:fixed;z-index:20;inset:0 auto 0 0;width:min(300px,88vw);box-shadow:0 0 0 999px #0009}.sidebar.open{display:flex}.mobile-menu{display:inline-flex}.topbar{height:60px;padding:0 13px}.chat{padding:22px 13px}.welcome{margin-top:5vh}.suggestions{grid-template-columns:1fr}.composer-wrap{padding:8px 10px max(10px,env(safe-area-inset-bottom))}.pill{display:none}.message{gap:8px}.avatar{width:30px;height:30px}.message-body{max-width:calc(100% - 38px)}.hint{display:none}.think-chip{font-size:10px;padding:7px}.bubble{font-size:13px}}
+
+.project-card{margin-top:12px;border:1px solid #344363;border-radius:15px;background:#0c1423;overflow:hidden;direction:rtl}
+.project-head{display:flex;align-items:center;gap:9px;padding:11px 12px;background:#121c2f;border-bottom:1px solid #293a57}
+.project-title{font-weight:700;font-size:12px}.project-meta{color:#8495b5;font-size:10px}.project-head-actions{margin-right:auto;display:flex;gap:6px}
+.project-btn{border:1px solid #3a4d70;background:#1a2943;color:#dbe6fb;border-radius:8px;padding:6px 9px;font-size:10px}
+.project-btn.primary-project{background:linear-gradient(120deg,#6f91f7,#8b72ed);border:0;color:white;font-weight:700}
+.project-files{display:flex;gap:6px;overflow:auto;padding:9px;border-bottom:1px solid #293a57;background:#0e1728}
+.project-file-tab{white-space:nowrap;border:1px solid #30425f;background:#131f34;color:#bfcce4;border-radius:8px;padding:6px 9px;font-size:10px}
+.project-file-tab.active{border-color:#718dff;background:#243458;color:#fff}
+.project-preview-wrap{padding:10px;background:#080d17}.project-iframe{width:100%;height:430px;border:1px solid #344363;border-radius:10px;background:white;display:block}
+.project-code{margin:0;padding:10px;max-height:330px;overflow:auto;white-space:pre;font:12px/1.6 ui-monospace,Consolas,monospace;direction:ltr;text-align:left;color:#dce6fa;background:#080d17}
+.file-preview-modal{position:fixed;inset:0;background:#000a;z-index:100;display:none;align-items:center;justify-content:center;padding:18px}
+.file-preview-modal.open{display:flex}.file-preview-box{width:min(1100px,96vw);height:min(850px,94vh);background:#0d1424;border:1px solid #3a4d70;border-radius:16px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 25px 90px #0009}
+.file-preview-head{height:52px;display:flex;align-items:center;gap:9px;padding:0 13px;border-bottom:1px solid #2d3e5b;background:#121c2f}
+.file-preview-head strong{font-size:12px}.file-preview-head span{color:#8294b5;font-size:10px}.file-preview-close{margin-right:auto;border:1px solid #3a4d70;background:#1a2943;color:#fff;border-radius:9px;padding:7px 11px}
+.file-preview-content{flex:1;min-height:0;background:#080d17}.file-preview-content iframe{width:100%;height:100%;border:0;background:white}.file-preview-content pre{height:100%;margin:0;overflow:auto;padding:16px;color:#dce6fa;font:12px/1.7 ui-monospace,Consolas,monospace;direction:ltr;text-align:left}
+.streaming-text{white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;line-height:1.9;color:inherit}
+
+/* Clean light interface */
+:root{color-scheme:light;--bg:#f7f8fb;--panel:#fff;--panel2:#f0f2f6;--line:#e3e6ed;--text:#20232b;--muted:#737987;--accent:#343943;--accent2:#666d7b;--green:#249b70;--danger:#d84e5b}
+body{background:#f7f8fb;color:#20232b}
+.sidebar{background:#fff;border-left:1px solid #e5e7ed}
+.brand .logo{background:#242832;box-shadow:0 7px 22px #20232b20}
+.primary{background:#252932;color:#fff}
+.secondary,.icon-btn{background:#f3f4f7;color:#343943;border-color:#e1e4eb}
+.secondary:hover,.icon-btn:hover{background:#e9ebf0;border-color:#c9ced8}
+.side-label{color:#858b98}.setting label,.toggle-row{color:#555b67}
+.field{background:#fff;color:#20232b;border-color:#dfe2e9}
+.status,.notice{color:#777e8b}
+.topbar{background:#ffffffeb;border-bottom:1px solid #e7e9ef}
+.chat{background:#f7f8fb}
+.welcome-icon{background:#252932;border-color:#252932;color:#fff;box-shadow:0 14px 36px #20232b18}
+.gradient{background:linear-gradient(100deg,#252932,#727987);-webkit-background-clip:text;background-clip:text}
+.welcome p{color:#737987}
+.suggestion{background:#fff;border-color:#e3e6ed;color:#333843}
+.suggestion:hover{background:#f0f1f5;border-color:#cbd0da}
+.suggestion span{color:#7c8290}
+.avatar{background:#eceef3;border-color:#e1e4eb;color:#303540}
+.user .avatar{background:#303540;color:white;border-color:#303540}
+.message-head{color:#858b98}
+.user .bubble{background:#eceef3;border-color:#e2e5eb;color:#242832}
+.bubble pre{background:#f3f4f7;border-color:#e0e3e9;color:#20232b}
+.bubble pre code{color:#20232b}
+.copy-code,.code-copy{background:#fff;border:1px solid #d9dde5;color:#303540}
+.copy-code:hover,.code-copy:hover{background:#eceef3}
+.bubble blockquote{background:#f0f2f6;color:#565d69;border-right-color:#555d6b}
+.bubble a{color:#465f9b}
+.bubble th{background:#eff1f5}
+.think-panel,.live-think{background:#fff;border-color:#e1e4eb}
+.think-head{color:#343943}
+.think-head:hover{background:#f4f5f8}
+.think-content{color:#626977;border-top-color:#e7e9ef;max-height:55vh;overflow-y:auto}
+.thinking-word{background:linear-gradient(90deg,#333944,#777e8c,#333944);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent}
+.thinking-sub{color:#858b98}
+.think-pulse{background:#555e6d;box-shadow:0 0 10px #555e6d55}
+.think-head.live{background:linear-gradient(90deg,#f4f5f8,#fff,#f4f5f8)}
+.think-head.live:after{background:linear-gradient(110deg,transparent 20%,rgba(80,90,110,.09) 48%,transparent 72%)}
+.brain-wrap{filter:grayscale(1);opacity:.8}
+.brain-wrap:before{border-color:#9ca2ad;box-shadow:0 0 12px #9ca2ad33}
+.dots i{background:#555e6d}
+.typing{color:#6c7380}
+.composer-wrap{background:linear-gradient(0deg,#f7f8fb 70%,transparent)}
+.composer{background:#fff;border-color:#dfe2e9;box-shadow:0 12px 34px #20232b0c}
+.composer:focus-within{border-color:#aeb4c0;box-shadow:0 0 0 3px #3339440a}
+.composer textarea{color:#20232b}
+.composer textarea::placeholder{color:#9298a3}
+.send{background:#292e38;color:#fff}
+.pill{background:#f0f2f6;color:#555d6b;border-color:#e0e3e9}
+.toast{background:#292e38;color:white;border-color:#292e38}
+.think-time{display:none!important}
+.skip-analysis{display:none!important}
+.code-file,.project-card{background:#fff;border-color:#e1e4eb}
+.code-file-head,.project-head{background:#f3f4f7;border-color:#e1e4eb;color:#343943}
+.code-file-body,.project-code{background:#f8f9fb;color:#252932}
+.code-lang,.project-meta{color:#777e8b}
+.code-copy{margin-right:auto;margin-left:0}
+.project-head-actions{display:none!important}
+.project-files,.project-preview-wrap{display:none!important}
+.attach-menu{background:#fff;border-color:#e1e4eb;box-shadow:0 12px 30px #20232b18}
+.attach-menu button{color:#343943}.attach-menu button:hover{background:#f0f2f6}
+.thumb-chip,.file-chip{background:#f1f3f6;color:#454b56;border-color:#e0e3e9}
+.polli-card{background:#fff;border-color:#e1e4eb}
+.polli-status{color:#737987}
+@media(max-width:780px){.sidebar{background:#fff;box-shadow:0 0 0 999px #0004}}
+
+
+/* Deep black interface */
+:root{color-scheme:dark;--bg:#050505;--panel:#0b0b0b;--panel2:#111111;--line:#242424;--text:#f4f4f4;--muted:#a0a0a0;--accent:#d0d0d0;--accent2:#888888;--green:#bdbdbd;--danger:#ff7777}
+body{background:#050505!important;color:#f4f4f4}
+.sidebar,.topbar,.composer,.settings,.panel,.modal,.menu,.chat{background-color:#080808!important}
+.sidebar{border-color:#222!important}
+.topbar{border-color:#222!important}
+.bubble,.field,.secondary,.icon-btn,.suggestion,.think-content,.polli-card{background:#101010!important;border-color:#292929!important;color:#f1f1f1!important}
+.primary{background:#ededed!important;color:#090909!important;border:1px solid #ededed!important}
+.primary:hover{background:#fff!important}
+.logo,.welcome-icon{background:#171717!important;border-color:#333!important;box-shadow:none!important}
+.gradient{-webkit-text-fill-color:#f4f4f4;background:none!important}
+.pill{background:#111!important;border-color:#333!important;color:#ddd!important}
+::selection{background:#555;color:#fff}
+
+
+/* Readable composer + compact Replit-like activity indicator */
+.composer textarea,
+.composer textarea:focus,
+.composer textarea:active{
+  color:#f7f7f7!important;
+  -webkit-text-fill-color:#f7f7f7!important;
+  caret-color:#ffffff!important;
+  opacity:1!important;
+  background:transparent!important;
+  text-shadow:none!important;
+}
+.composer textarea::placeholder{
+  color:#a6a6a6!important;
+  -webkit-text-fill-color:#a6a6a6!important;
+  opacity:1!important;
+}
+.composer textarea::selection{background:#555;color:#fff}
+.live-think{margin:0 0 12px;border:1px solid #343434;border-radius:13px;background:#101010;overflow:hidden;max-width:100%}
+.live-thinking-row{display:flex;align-items:center;gap:11px;padding:13px 15px;min-height:58px;position:relative;overflow:hidden}
+.live-thinking-row:after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 25%,#ffffff12 50%,transparent 75%);transform:translateX(-100%);animation:studioSweep 1.8s linear infinite;pointer-events:none}
+.live-orbit{width:25px;height:25px;flex:none;border:2px solid #414141;border-top-color:#f2f2f2;border-right-color:#a0a0a0;border-radius:50%;animation:studioSpin .8s linear infinite;box-shadow:0 0 12px #ffffff20}
+.live-thinking-label{font-size:13px;font-weight:700;color:#f3f3f3}
+.live-thinking-sub{font-size:10px;color:#a0a0a0;margin-top:3px}
+.live-thinking-dots{display:inline-flex;gap:4px;margin-right:auto;align-items:center}
+.live-thinking-dots i{width:5px;height:5px;background:#ddd;border-radius:50%;animation:studioDot .9s infinite alternate}
+.live-thinking-dots i:nth-child(2){animation-delay:.18s}.live-thinking-dots i:nth-child(3){animation-delay:.36s}
+.live-think.finished .live-orbit{animation:none;border-color:#bdbdbd}
+.live-think.finished .live-thinking-label{color:#fff}
+@keyframes studioSpin{to{transform:rotate(360deg)}}
+@keyframes studioSweep{to{transform:translateX(100%)}}
+@keyframes studioDot{to{opacity:.25;transform:translateY(-3px)}}
+@media(max-width:780px){
+ .composer textarea{font-size:16px;min-height:46px}
+ .live-thinking-row{padding:11px 12px}
+}
+
+
+/* Mohammed AI identity + animated neural brain */
+.brain-mark{font-size:0!important;overflow:visible!important}
+.brain-mark svg{width:52px;height:52px;overflow:visible;filter:drop-shadow(0 0 12px #8fa9ff55);animation:brainFloat 3s ease-in-out infinite}
+.brain-shape{transform-origin:50% 50%;animation:brainPulse 2.8s ease-in-out infinite}
+.brain-node{fill:#b7caff;filter:drop-shadow(0 0 5px #9db7ff);animation:nodeBlink 1.6s ease-in-out infinite alternate}
+.node-b{animation-delay:.3s}.node-c{animation-delay:.6s}.node-d{animation-delay:.9s}
+@keyframes brainFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-4px) rotate(2deg)}}
+@keyframes brainPulse{0%,100%{opacity:.86}50%{opacity:1;filter:drop-shadow(0 0 5px #9db7ff)}}
+@keyframes nodeBlink{from{opacity:.35;transform:scale(.75)}to{opacity:1;transform:scale(1.35)}}
+.polli-viewer-box{overflow:hidden;touch-action:none}
+.polli-viewer img{max-width:96vw;max-height:82vh;width:auto;height:auto;object-fit:contain;touch-action:none;cursor:grab;transform-origin:center center;will-change:transform;-webkit-user-select:none;user-select:none;-webkit-user-drag:none;-webkit-touch-callout:none}
+.polli-viewer img:active{cursor:grabbing}
+.polli-actions .polli-download-btn{flex:1;min-height:42px;border:1px solid #000;background:#050505;color:#fff;border-radius:10px;padding:10px 12px;font-weight:700;font-size:12px}
+.polli-actions .polli-download-btn:active{background:#222}
+.polli-viewer-tools{position:absolute;bottom:54px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:3}
+.polli-viewer-tools button{width:42px;height:38px;border:1px solid #555;background:#111;color:#fff;border-radius:10px;font-size:19px}
+.polli-viewer-hint{bottom:8px!important}
+@media(max-width:780px){.polli-viewer{padding:8px}.polli-viewer img{max-width:96vw;max-height:78vh}.polli-viewer-tools{bottom:58px}}
+
+/* أزرار تحريك الصورة + زوم مطوّل */
+.polli-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border:1px solid #555;background:#111c;color:#fff;border-radius:50%;font-size:26px;line-height:1;display:flex;align-items:center;justify-content:center;z-index:4;backdrop-filter:blur(4px);user-select:none;-webkit-user-select:none;touch-action:none}
+.polli-nav:hover{background:#263a60}
+.polli-nav.prev{right:12px}
+.polli-nav.next{left:12px}
+.polli-viewer-tools button{touch-action:none;user-select:none;-webkit-user-select:none}
+.polli-viewer-tools button.hold-zoom{background:#2a3a5a;border-color:#8fa9ff;box-shadow:0 0 14px #8fa9ff66}
+@media(max-width:780px){.polli-nav{width:42px;height:42px;font-size:24px}.polli-nav.prev{right:8px}.polli-nav.next{left:8px}}
+
+/* Long-press actions for sent user messages */
+.user .bubble{cursor:pointer;-webkit-user-select:text;user-select:text;touch-action:pan-y}
+.message-actions{position:fixed;z-index:10050;display:none;min-width:190px;padding:6px;background:#121d31;border:1px solid #405477;border-radius:14px;box-shadow:0 16px 48px #0009;gap:4px}
+.message-actions.open{display:grid;animation:appear .12s ease}
+.message-actions button{border:0;background:transparent;color:#eaf0ff;text-align:right;padding:11px 13px;border-radius:9px;font-size:13px}
+.message-actions button:active,.message-actions button:hover{background:#243654}
+.message-actions button.danger{color:#ff8790}
+
+</style>
+</head>
+<body>
+<div class="message-actions" id="messageActions" role="menu" aria-label="إجراءات الرسالة">
+  <button type="button" data-action="copy">نسخ الرسالة</button>
+  <button type="button" data-action="resend">إعادة الإرسال</button>
+  <button type="button" class="danger" data-action="delete">حذف الرسالة</button>
+</div>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="logo">✦</div><div><h1>Mohammed AI</h1><small>ذكاء اصطناعي يساعدك على الإبداع</small></div></div>
+    <button class="primary" id="newChat">＋ محادثة جديدة</button>
+    <div class="divider"></div>
+    <div class="side-label">إعدادات الاتصال</div>
+    <select class="field" id="modelSelect" hidden>
+<option value="meta-llama/llama-3.3-70b-instruct" selected>Llama 3.3 70B</option>
+<option value="qwen/qwen3-vl-30b-a3b-instruct">Qwen3 VL 30B</option>
+<option value="cohere/north-mini-code:free">North Mini Code</option>
+<option value="nvidia/nemotron-3-ultra-550b-a55b-20260604:free">Nemotron 3 Ultra</option>
+</select>
+    <input type="checkbox" id="thinkingToggle" hidden>
+    <select id="effortSelect" hidden><option value="medium">متوازن</option></select>
+    <div class="divider"></div>
+    <div class="side-label">مفتاح OpenRouter</div>
+    <div class="setting"><label for="keyInput">API Key</label><div class="key-row"><input class="field" id="keyInput" type="password" placeholder="sk-or-v1-..." autocomplete="off"><button class="secondary" id="showKey" aria-label="إظهار المفتاح">◉</button></div><button class="primary" id="applyBtn">حفظ المفتاح</button><div class="status"><span class="dot" id="keyDot"></span><span id="status">أدخل المفتاح للحفظ محليًا</span></div></div>
+    <div class="divider"></div>
+    <div class="side-label">مفتاح خدمة إنشاء الصور</div>
+    <div class="setting"><label for="pollinationsKeyInput">API Key</label><div class="key-row"><input class="field" id="pollinationsKeyInput" type="password" placeholder="مفتاح الصور..." autocomplete="off"><button class="secondary" id="showPollinationsKey" aria-label="إظهار مفتاح الصور">◉</button></div><button class="primary" id="applyPollinationsBtn">حفظ مفتاح الصور</button><div class="status"><span class="dot" id="pollinationsDot"></span><span id="pollinationsStatus">أدخل مفتاح الصور للحفظ محليًا</span></div></div>
+    <div class="side-bottom">
+      <button class="secondary" id="clearChat">🗑️ حذف المحادثة</button>
+      <div class="notice">يتم اختيار النموذج تلقائيًا حسب نوع طلبك. لا يتم إنشاء الأكواد إلا عندما تطلبها.</div>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn mobile-menu" id="menuBtn" aria-label="القائمة">☰</button>
+      <div><div class="model-title" id="activeModel">المساعد الذكي</div><div class="model-sub">يختار النموذج تلقائيًا حسب طلبك</div></div>
+      <div class="top-spacer"></div>
+    </header>
+    <section class="chat" id="chat" aria-live="polite">
+      <div class="welcome" id="welcome">
+        <div class="welcome-icon brain-mark" aria-label="Mohammed AI">
+          <svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+            <defs><linearGradient id="brainGlow" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9db7ff"/><stop offset="1" stop-color="#77e7d0"/></linearGradient></defs>
+            <path class="brain-shape" d="M48 18c-9-10-24-4-24 8-12 1-16 17-7 24-8 10-2 25 10 26 1 13 17 18 25 8V25c0-3-1-5-4-7Zm4 0c9-10 24-4 24 8 12 1 16 17 7 24 8 10 2 25-10 26-1 13-17 18-25 8V25c0-3 1-5 4-7Z" fill="none" stroke="url(#brainGlow)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M50 25v57M31 35c8 0 11 5 11 12m-23 3c8-3 15 1 15 9m-5 15c8-1 12-5 13-12m27-27c-8 0-11 5-11 12m23 3c-8-3-15 1-15 9m5 15c-8-1-12-5-13-12" fill="none" stroke="url(#brainGlow)" stroke-width="3" stroke-linecap="round"/>
+            <circle class="brain-node node-a" cx="18" cy="20" r="3"/><circle class="brain-node node-b" cx="82" cy="18" r="3"/><circle class="brain-node node-c" cx="86" cy="78" r="3"/><circle class="brain-node node-d" cx="14" cy="76" r="3"/>
+          </svg>
+        </div>
+        <h2>أهلًا بك في <span class="gradient">Mohammed AI</span></h2>
+        <p>اكتشف العالم مع <strong>MHMD AI</strong></p>
+        <div class="suggestions">
+          <button class="suggestion" data-prompt="اشرح لي مفهومًا صعبًا بطريقة بسيطة ثم أعطني مثالًا عمليًا.">✧ تعلّم شيئًا جديدًا<span>شرح مبسّط مع مثال</span></button>
+          <button class="suggestion" data-prompt="ساعدني في تصميم مشروع برمجي منظم، واذكر البنية والخطوات والمخاطر المحتملة.">⌘ خطّط لمشروع<span>هيكل واضح وخطوات عملية</span></button>
+          <button class="suggestion" data-prompt="حلّل هذه الفكرة نقديًا، واذكر الافتراضات والاحتمالات والقيود قبل تقديم خلاصة: ">◎ حلّل فكرة<span>مزايا وقيود واستنتاج</span></button>
+          <button class="suggestion" data-prompt="اكتب مثال كود واضحًا مع شرح طريقة تشغيله وكيفية معالجة الأخطاء.">⌁ اكتب كودًا<span>مثال مع شرح وتصحيح أخطاء</span></button>
+        </div>
+      </div>
+    </section>
+    <div class="composer-wrap">
+      <div class="composer">
+        <textarea id="msgInput" rows="1" placeholder="اكتب رسالتك هنا..." autocomplete="off"></textarea>
+        <div class="composer-bottom">
+          <div class="attach-wrap">
+            <button class="icon-btn attach-plus" id="plusBtn" title="إضافة مرفق" aria-label="إضافة مرفق">＋</button>
+            <div class="attach-menu" id="attachMenu">
+              <button type="button" id="pickImageBtn">🖼️ إرفاق صورة</button>
+              <button type="button" id="pickFileBtn">📎 إرفاق ملف</button>
+            </div>
+          </div>
+          <input id="fileInput" type="file" hidden multiple>
+          <input id="imageInput" type="file" hidden multiple accept="image/*">
+          <div class="attachments" id="attachments"></div>
+          <span class="hint">Enter للإرسال · Shift + Enter لسطر جديد</span>
+          <button class="send" id="sendBtn" aria-label="إرسال"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13"/><path d="m22 2-7 20-4-9-9-4Z"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="file-preview-modal" id="filePreviewModal">
+  <div class="file-preview-box">
+    <div class="file-preview-head"><strong id="filePreviewTitle">معاينة الملف</strong><span id="filePreviewType"></span><button class="file-preview-close" id="closeFilePreview">إغلاق ✕</button></div>
+    <div class="file-preview-content" id="filePreviewContent"></div>
+  </div>
+</div>
+<script>
+const API_URL="https://openrouter.ai/api/v1/chat/completions";
+const $=id=>document.getElementById(id);
+const chat=$("chat"),msgInput=$("msgInput"),sendBtn=$("sendBtn"),keyInput=$("keyInput");
+const modelSelect=$("modelSelect"),thinkingToggle=$("thinkingToggle"),effortSelect=$("effortSelect");
+let apiKey="",pollinationsKey="",messages=[],busy=false,thinkingStart=0,timerHandle=null,typingEl=null;
+const modelNames={
+ 
+ "meta-llama/llama-3.3-70b-instruct":"Llama 3.3 70B",
+ "qwen/qwen3-vl-30b-a3b-instruct":"Qwen3 VL 30B · صور",
+ "pollinations:image":"Mohammed AI · إنشاء صور",
+ "":"",
+ "cohere/north-mini-code:free":"North Mini Code · مجاني للمشاريع 🚀",
+ "nvidia/nemotron-3-ultra-550b-a55b-20260604:free":"Nemotron 3 Ultra · مجاني"
+};
+function toast(text){const old=document.querySelector(".toast");if(old)old.remove();const el=document.createElement("div");el.className="toast";el.textContent=text;document.body.appendChild(el);setTimeout(()=>el.remove(),2600)}
+function setStatus(text,good=false){$("status").textContent=text;$("keyDot").classList.toggle("good",good)}
+function syncModel(){ $("activeModel").textContent="المساعد الذكي"; }
+function syncThinking(){thinkingToggle.checked=false;}
+function loadKey(){try{apiKey=localStorage.getItem("openrouter_key")||"";if(apiKey){keyInput.value=apiKey;setStatus("المفتاح محفوظ على هذا الجهاز",true)}}catch(e){setStatus("تعذّر الوصول للتخزين المحلي")}}
+$("applyBtn").onclick=()=>{const value=keyInput.value.trim();if(!value){setStatus("أدخل المفتاح أولًا");return}apiKey=value;try{localStorage.setItem("openrouter_key",apiKey);setStatus("تم حفظ المفتاح محليًا",true);toast("تم حفظ المفتاح")}catch(e){setStatus("تعذّر الحفظ؛ سيبقى في الذاكرة",true)}};
+$("showKey").onclick=()=>{keyInput.type=keyInput.type==="password"?"text":"password"};
+function loadPollinationsKey(){try{pollinationsKey=localStorage.getItem("pollinations_key")||"";if(pollinationsKey){$("pollinationsKeyInput").value=pollinationsKey;$("pollinationsStatus").textContent="مفتاح الصور محفوظ على هذا الجهاز";$("pollinationsDot").classList.add("good")}}catch(e){$("pollinationsStatus").textContent="تعذّر الوصول للتخزين المحلي"}}
+$("applyPollinationsBtn").onclick=()=>{const value=$("pollinationsKeyInput").value.trim();if(!value){$("pollinationsStatus").textContent="أدخل المفتاح أولًا";return}pollinationsKey=value;try{localStorage.setItem("pollinations_key",pollinationsKey);$("pollinationsStatus").textContent="تم حفظ مفتاح الصور محليًا";$("pollinationsDot").classList.add("good");toast("تم حفظ مفتاح الصور")}catch(e){$("pollinationsStatus").textContent="تعذّر الحفظ؛ سيبقى في الذاكرة"}};
+$("showPollinationsKey").onclick=()=>{$("pollinationsKeyInput").type=$("pollinationsKeyInput").type==="password"?"text":"password"};
+
+modelSelect.onchange=syncModel;thinkingToggle.onchange=syncThinking;
+$("menuBtn").onclick=()=>$("sidebar").classList.toggle("open");
+$("newChat").onclick=()=>{messages=[];chat.innerHTML="";chat.appendChild($("welcome"));$("welcome").style.display="";$("sidebar").classList.remove("open");msgInput.focus()};
+$("clearChat").onclick=()=>{if(!confirm("هل تريد حذف المحادثة الحالية بالكامل؟"))return;messages=[];chat.innerHTML="";chat.appendChild($("welcome"));$("welcome").style.display="";pendingFiles=[];pendingImages=[];renderAttachmentChips();toast("تم حذف المحادثة");};
+document.querySelectorAll(".suggestion").forEach(b=>b.onclick=()=>{msgInput.value=b.dataset.prompt;resizeInput();msgInput.focus()});
+
+const plusBtn=$("plusBtn"),fileInput=$("fileInput"),imageInput=$("imageInput"),attachmentsEl=$("attachments"),attachMenu=$("attachMenu");
+let pendingFiles=[],pendingImages=[],activeController=null,skipRequested=false;
+function renderAttachmentChips(){
+ attachmentsEl.innerHTML="";
+ pendingImages.forEach((f,i)=>{const c=document.createElement("div");c.className="thumb-chip";const img=document.createElement("img");img.src=URL.createObjectURL(f);img.alt=f.name;const n=document.createElement("span");n.textContent=f.name;n.title=f.name;const x=document.createElement("button");x.textContent="×";x.onclick=()=>{pendingImages.splice(i,1);renderAttachmentChips()};c.append(img,n,x);attachmentsEl.appendChild(c)});
+ pendingFiles.forEach((f,i)=>{const c=document.createElement("div");c.className="file-chip";const n=document.createElement("span");n.textContent=f.name;n.title=f.name;const x=document.createElement("button");x.textContent="×";x.onclick=()=>{pendingFiles.splice(i,1);renderAttachmentChips()};c.append(n,x);attachmentsEl.appendChild(c)})
+}
+plusBtn.onclick=e=>{e.stopPropagation();attachMenu.classList.toggle("open")};
+document.addEventListener("click",e=>{if(!e.target.closest(".attach-wrap"))attachMenu.classList.remove("open")});
+$("pickFileBtn").onclick=()=>{attachMenu.classList.remove("open");fileInput.click()};
+$("pickImageBtn").onclick=()=>{attachMenu.classList.remove("open");imageInput.click()};
+fileInput.onchange=()=>{pendingFiles.push(...Array.from(fileInput.files));fileInput.value="";renderAttachmentChips()};
+imageInput.onchange=()=>{pendingImages.push(...Array.from(imageInput.files).filter(f=>f.type.startsWith("image/")));imageInput.value="";renderAttachmentChips()};
+async function fileToText(file){return await file.text()}
+function imageDataURL(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file)})}
+
+function inferFileName(lang){
+ return ({html:"index.html",htm:"index.html",css:"style.css",js:"script.js",javascript:"script.js",ts:"script.ts",
+ typescript:"script.ts",lua:"script.lua",py:"main.py",python:"main.py",json:"data.json",xml:"data.xml",sql:"query.sql",
+ java:"Main.java",cpp:"main.cpp",c:"main.c",rs:"main.rs",rust:"main.rs",go:"main.go",php:"index.php",sh:"script.sh",
+ bash:"script.sh",yaml:"config.yml",yml:"config.yml"})[(lang||"").toLowerCase()]||"code.txt";
+}
+function parseCodeFiles(text){
+ const re=/```(?:([\w+#.-]+))?(?:\s+filename[=:]([^\s`]+))?\s*\n([\s\S]*?)(?:```|$)/g;
+ let m,files=[],fallback=0;
+ while((m=re.exec(text))){
+   const lang=(m[1]||"text").toLowerCase(), name=m[2]||inferFileName(lang);
+   files.push({name,lang,code:m[3].trimEnd()});
+   fallback++;
+ }
+ if(!files.length)return null;
+ // If the model forgot filename= on repeated same-language blocks, make unique names.
+ const used={};
+ files.forEach(f=>{if(used[f.name]){used[f.name]++;const dot=f.name.lastIndexOf(".");f.name=f.name.slice(0,dot)+"-"+used[f.name]+f.name.slice(dot)}else used[f.name]=1});
+ return files;
+}
+function extractCode(text){const files=parseCodeFiles(text);return files?files[0]:null}
+function stripCode(text){return text.replace(/```(?:[\w+#.-]+)?(?:\s+filename[=:][^\s`]+)?\s*\n[\s\S]*?(?:```|$)/g,"").replace(/\n{3,}/g,"\n\n").trim()}
+
+function escHtml(v){return String(v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function isRunnableFile(f){return /\.(html?|xhtml)$/i.test(f.name)}
+function projectTitle(files){const html=files.find(f=>isRunnableFile(f));return html?html.name:"مشروع مولّد"}
+function buildProjectSrcdoc(files,mainName){
+ const htmlFile=files.find(f=>f.name===mainName)||files.find(isRunnableFile);
+ if(!htmlFile)return "";
+ let doc=htmlFile.code;
+ const normalizePath=v=>String(v||"").replace(/^\.\//,"").replace(/^\.\.\//,"").replace(/^\//,"");
+ const localFile=(src,ext)=>{
+   const clean=normalizePath(decodeURIComponent(String(src||"").split(/[?#]/)[0]));
+   return files.find(f=>normalizePath(f.name)===clean && (!ext || new RegExp(ext,"i").test(f.name)));
+ };
+ const escScript=code=>String(code).replace(/<\/script/gi,"<\/script");
+ const cssFiles=files.filter(f=>/\.css$/i.test(f.name));
+ const jsFiles=files.filter(f=>/\.m?js$/i.test(f.name));
+ doc=doc.replace(/<link([^>]+)href=["']([^"']+\.css(?:[?#][^"']*)?)["']([^>]*)>/gi,(full,a,href,b)=>{
+   const f=localFile(href,"\.css$");
+   return f?`<style data-generated-project-css data-source="${escHtml(f.name)}">\n${f.code}\n</style>`:full;
+ });
+ if(cssFiles.length && !/<style[^>]*data-generated-project-css/i.test(doc)){
+   const css=cssFiles.map(f=>`/* ${f.name} */\n${f.code}`).join("\n\n");
+   const cssTag=`<style data-generated-project-css>\n${css}\n</style>`;
+   if(/<\/head>/i.test(doc))doc=doc.replace(/<\/head>/i,cssTag+"</head>");else doc=cssTag+doc;
+ }
+ doc=doc.replace(/<script([^>]+)src=["']([^"']+\.m?js(?:[?#][^"']*)?)["']([^>]*)><\/script>/gi,(full,a,src,b)=>{
+   const f=localFile(src,"\.m?js$");
+   if(!f)return full;
+   const attrs=(a+b).replace(/\\s+src=["'][^"']+["']/i,"");
+   return `<script${attrs}>\n${escScript(f.code)}\n<\/script>`;
+ });
+ const referencedLocalJs=jsFiles.some(f=>new RegExp(`(?:src|import)[\\s\\S]*${f.name.replace(/[.*+?^${}()|[\\]\\\\]/g,"\\\\$&")}`).test(doc));
+ if(jsFiles.length && !referencedLocalJs){
+   const js=jsFiles.map(f=>`// ===== ${f.name} =====\n${escScript(f.code)}`).join("\n\n");
+   const jsTag=`<script data-generated-project-js>\n${js}\n<\/script>`;
+   if(/<\/body>/i.test(doc))doc=doc.replace(/<\/body>/i,jsTag+"</body>");else doc+=jsTag;
+ }
+ return doc;
+}
+function openFilePreview(file,files){
+ $("filePreviewTitle").textContent="📄 "+file.name;
+ $("filePreviewType").textContent=file.lang||"text";
+ const box=$("filePreviewContent");box.innerHTML="";
+ if(isRunnableFile(file)){
+   const iframe=document.createElement("iframe");iframe.setAttribute("sandbox","allow-scripts allow-forms allow-modals allow-popups");iframe.srcdoc=buildProjectSrcdoc(files,file.name);box.appendChild(iframe);
+ }else{
+   const pre=document.createElement("pre");pre.textContent=file.code;box.appendChild(pre);
+ }
+ $("filePreviewModal").classList.add("open");
+}
+$("closeFilePreview").onclick=()=>$("filePreviewModal").classList.remove("open");
+$("filePreviewModal").onclick=e=>{if(e.target===$("filePreviewModal"))$("filePreviewModal").classList.remove("open")};
+
+async function copyAllProjectCode(files,button){
+ const full=files.map(f=>`// ===== ${f.name} =====\n${f.code}`).join("\n\n");
+ try{
+   await navigator.clipboard.writeText(full);
+   const old=button.textContent;
+   button.textContent="✓ تم نسخ كل الكود";
+   setTimeout(()=>button.textContent=old,1500);
+ }catch(e){
+   const ta=document.createElement("textarea");
+   ta.value=full;ta.style.position="fixed";ta.style.opacity="0";
+   document.body.appendChild(ta);ta.select();
+   try{document.execCommand("copy");button.textContent="✓ تم النسخ";setTimeout(()=>button.textContent="نسخ الكود كاملًا",1500)}
+   catch(_){toast("تعذّر نسخ الكود كاملًا")}
+   ta.remove();
+ }
+}
+function renderProject(container,text){renderCodeFile(container,text,false)}
+function renderCodeFile(container,text,streaming){
+ container.querySelectorAll(".code-file,.project-card").forEach(x=>x.remove());
+ const blocks=container.querySelectorAll("pre");
+ blocks.forEach(pre=>{
+   if(pre.querySelector(".copy-code"))return;
+   const code=pre.querySelector("code");if(!code)return;
+   const cp=document.createElement("button");cp.className="copy-code";cp.type="button";cp.textContent="نسخ";
+   cp.onclick=async()=>{try{await navigator.clipboard.writeText(code.innerText);cp.textContent="تم النسخ ✓";setTimeout(()=>cp.textContent="نسخ",1300)}catch(e){toast("تعذّر النسخ")}};
+   pre.appendChild(cp);
+ });
+}
+function startGenerationWorker(payload,key,onChunk){
+ return new Promise((resolve,reject)=>{
+  const workerCode=`self.onmessage=async(e)=>{
+   const {payload,key,url}=e.data;
+   try{
+    const res=await fetch(url,{method:"POST",headers:{
+     "Authorization":"Bearer "+key,"Content-Type":"application/json",
+     "HTTP-Referer":location.href,"X-Title":"Mohammed AI"
+    },body:JSON.stringify(payload)});
+    if(!res.ok){const t=await res.text();self.postMessage({type:"error",error:"HTTP "+res.status+": "+t.slice(0,500)});return}
+    const reader=res.body.getReader(),decoder=new TextDecoder();
+    let buffer="",reply="",reasoning="";
+    while(true){
+     const {value,done}=await reader.read();if(done)break;
+     buffer+=decoder.decode(value,{stream:true});
+     const lines=buffer.split(/\\r?\\n/);buffer=lines.pop()||"";
+     for(const line of lines){
+      if(!line.startsWith("data:"))continue;
+      const raw=line.slice(5).trim();if(!raw||raw==="[DONE]")continue;
+      let j;try{j=JSON.parse(raw)}catch{continue}
+      const d=j.choices?.[0]?.delta||{};
+      if(typeof d.content==="string")reply+=d.content;
+      if(typeof d.reasoning==="string")reasoning+=d.reasoning;
+      if(typeof d.reasoning_content==="string")reasoning+=d.reasoning_content;
+      if(Array.isArray(d.reasoning_details))reasoning+=d.reasoning_details.map(x=>x.text||x.summary||"").filter(Boolean).join("");
+      self.postMessage({type:"chunk",replyDelta:d.content||"",reasoningDelta:(d.reasoning||d.reasoning_content||""),reply,reasoning});
+     }
+    }
+    self.postMessage({type:"done",reply,reasoning});
+   }catch(err){self.postMessage({type:"error",error:err.name==="AbortError"?"تم الإيقاف":(err.message||"خطأ غير معروف")})}
+  };`;
+  const blob=new Blob([workerCode],{type:"application/javascript"});
+  const w=new Worker(URL.createObjectURL(blob));window.__generationWorker=w;
+  w.onmessage=e=>{
+   if(e.data.type==="chunk")onChunk(e.data);
+   else if(e.data.type==="done"){w.terminate();URL.revokeObjectURL(blob);if(window.__generationWorker===w)window.__generationWorker=null;resolve(e.data)}
+   else if(e.data.type==="error"){w.terminate();URL.revokeObjectURL(blob);if(window.__generationWorker===w)window.__generationWorker=null;reject(new Error(e.data.error))}
+  };
+  w.onerror=()=>{w.terminate();URL.revokeObjectURL(blob);if(window.__generationWorker===w)window.__generationWorker=null;reject(new Error("تعذر تشغيل مولد الخلفية"))};
+  w.postMessage({payload,key,url:API_URL});
+ });
+}
+function stopGenerationWorker(){if(window.__generationWorker){window.__generationWorker.terminate();window.__generationWorker=null;return true}return false}
+
+function isNearBottom(){return chat.scrollHeight-chat.scrollTop-chat.clientHeight<90}
+function safeScrollBottom(force=false){if(force||isNearBottom())chat.scrollTop=chat.scrollHeight}
+function makeLiveAssistant(){
+ if($("welcome"))$("welcome").style.display="none";
+ const row=document.createElement("article");row.className="message assistant";
+ const av=document.createElement("div");av.className="avatar";av.textContent="✦";
+ const body=document.createElement("div");body.className="message-body";
+ const head=document.createElement("div");head.className="message-head";head.textContent="Mohammed AI";
+ body.appendChild(head);
+
+ const think=document.createElement("div");think.className="live-think";
+ const status=document.createElement("div");status.className="live-thinking-row";
+ const orbit=document.createElement("span");orbit.className="live-orbit";
+ const copy=document.createElement("div");
+ const label=document.createElement("div");label.className="live-thinking-label";label.textContent="Mohammed AI يفكر";
+ const sub=document.createElement("div");sub.className="live-thinking-sub";sub.textContent="لحظات ونجهّز لك أفضل إجابة";
+ copy.append(label,sub);
+ const dots=document.createElement("span");dots.className="live-thinking-dots";
+ dots.innerHTML="<i></i><i></i><i></i>";
+ status.append(orbit,copy,dots);think.appendChild(status);
+
+ const bubble=document.createElement("div");bubble.className="bubble";
+ body.append(think,bubble);row.append(av,body);chat.appendChild(row);safeScrollBottom(true);
+ return {row,think,tc:sub,lab:label,bubble};
+}
+function updateLive(live,reply,reasoning,elapsed){
+ if(live && live.lab && !reply) live.lab.textContent="جاري التفكير";
+}
+
+function formatTime(ms){return (ms/1000).toFixed(1)+" ثانية"}
+function hideMessageActions(){const menu=$("messageActions");if(menu){menu.classList.remove("open");menu.dataset.target=""}}
+function messageTextForHistory(item){if(!item||item.role!=="user")return "";if(typeof item.content==="string")return item.content;if(Array.isArray(item.content)){const t=item.content.find(x=>x&&x.type==="text"&&typeof x.text==="string");return t?.text||""}return ""}
+function showMessageActions(row,x,y){const menu=$("messageActions");if(!menu||!row||!row.isConnected)return;menu.dataset.target="";menu.__targetRow=row;menu.classList.add("open");const w=200,h=160;menu.style.left=Math.max(8,Math.min(innerWidth-w,x-w/2))+"px";menu.style.top=Math.max(8,Math.min(innerHeight-h,y-h/2))+"px"}
+function setupUserMessageActions(row,text){
+ if(!row||!row.classList.contains("user"))return;
+ let holdTimer=null,held=false,startX=0,startY=0;
+ const target=row.querySelector(".bubble")||row;
+ const cancel=()=>{if(holdTimer){clearTimeout(holdTimer);holdTimer=null}};
+ target.addEventListener("pointerdown",e=>{if(e.pointerType==="mouse"&&e.button!==0)return;held=false;startX=e.clientX;startY=e.clientY;cancel();holdTimer=setTimeout(()=>{held=true;showMessageActions(row,e.clientX,e.clientY)},520)});
+ target.addEventListener("pointermove",e=>{if(Math.abs(e.clientX-startX)>12||Math.abs(e.clientY-startY)>12)cancel()});
+ target.addEventListener("pointerup",cancel);target.addEventListener("pointercancel",cancel);target.addEventListener("pointerleave",cancel);
+ target.addEventListener("contextmenu",e=>{e.preventDefault();held=true;showMessageActions(row,e.clientX,e.clientY)});
+}
+(function installMessageActionMenu(){
+ const menu=$("messageActions");if(!menu)return;
+ menu.addEventListener("click",async e=>{
+  const btn=e.target.closest("button[data-action]");if(!btn)return;
+  const row=menu.__targetRow;if(!row||!row.isConnected){hideMessageActions();return}
+  const text=row.dataset.userText||row.querySelector(".bubble")?.innerText||"";
+  const action=btn.dataset.action;hideMessageActions();
+  if(action==="copy"){
+   try{await navigator.clipboard.writeText(text);toast("تم نسخ الرسالة")}
+   catch(err){const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");toast("تم نسخ الرسالة")}catch(e){toast("تعذّر النسخ من المتصفح")}ta.remove()}
+  }else if(action==="resend"){
+   msgInput.value=text;resizeInput();msgInput.focus();sendMessage();
+  }else if(action==="delete"){
+   for(let i=messages.length-1;i>=0;i--){if(messages[i]?.role==="user"&&(messageTextForHistory(messages[i])===text||text.startsWith(messageTextForHistory(messages[i])))){messages.splice(i,1);if(messages[i]?.role==="assistant")messages.splice(i,1);break}}
+   row.remove();toast("تم حذف الرسالة")
+  }
+ });
+ document.addEventListener("pointerdown",e=>{if(!menu.contains(e.target))hideMessageActions()});
+ document.addEventListener("keydown",e=>{if(e.key==="Escape")hideMessageActions()});
+ window.addEventListener("scroll",hideMessageActions,true);
+})();
+function addMessage(text,role,reasoning=null,elapsed=null,images=[]){
+ if($("welcome"))$("welcome").style.display="none";
+ const row=document.createElement("article");row.className="message "+role;
+ if(role==="user") row.dataset.userText=String(text||"");
+ const avatar=document.createElement("div");avatar.className="avatar";avatar.textContent=role==="user"?"أنت":"✦";
+ const body=document.createElement("div");body.className="message-body";
+ const head=document.createElement("div");head.className="message-head";
+ const name=document.createElement("span");name.textContent=role==="user"?"أنت":modelNames[modelSelect.value]||"AI";head.appendChild(name);
+ 
+ body.appendChild(head);
+ if(role==="assistant"&&thinkingToggle.checked){
+  const panel=document.createElement("div");panel.className="think-panel";
+  const toggle=document.createElement("button");toggle.className="think-head";
+  const label=document.createElement("span");label.textContent="🧠 بيانات الاستدلال";
+  const time=document.createElement("span");time.className="think-time";time.textContent=elapsed===null?"قيد المعالجة":formatTime(elapsed);
+  const arrow=document.createElement("span");arrow.textContent="＋";
+  const content=document.createElement("div");content.className="think-content";
+  if(reasoning){content.textContent=reasoning}
+  else{const msg=document.createElement("span");msg.className="muted";msg.textContent="هذا النموذج أو المزوّد لم يرسل نص استدلال قابلًا للعرض في هذه الاستجابة. الوقت الظاهر هو وقت انتظار الرد، وليس قياسًا منفصلًا لمدة التفكير الداخلية.";content.appendChild(msg)}
+  toggle.append(label,time,arrow);toggle.onclick=()=>{content.classList.toggle("open");arrow.textContent=content.classList.contains("open")?"−":"＋"};
+  panel.append(toggle,content);body.appendChild(panel);
+ }
+ const bubble=document.createElement("div");bubble.className="bubble";
+ if(role==="assistant"){
+  const rendered=window.marked?marked.parse(text||"لم يصل نص في الرد."):text;
+  bubble.innerHTML=window.DOMPurify?DOMPurify.sanitize(rendered):rendered;
+  bubble.querySelectorAll("pre code").forEach(code=>{if(window.hljs)hljs.highlightElement(code);const pre=code.parentElement;const copy=document.createElement("button");copy.className="copy-code";copy.textContent="نسخ";copy.onclick=async()=>{try{await navigator.clipboard.writeText(code.innerText);copy.textContent="تم النسخ";setTimeout(()=>copy.textContent="نسخ",1200)}catch(e){toast("تعذّر النسخ من المتصفح")}};pre.appendChild(copy)});
+  bubble.querySelectorAll("a").forEach(a=>{a.target="_blank";a.rel="noopener noreferrer"});
+ }else {
+   if(images.length){const imgs=document.createElement("div");imgs.className="sent-images";images.forEach(src=>{const im=document.createElement("img");im.className="sent-image";im.src=src;im.alt="صورة مرفقة";im.loading="eager";imgs.appendChild(im)});bubble.appendChild(imgs)}
+   const t=document.createElement("div");t.textContent=text; bubble.appendChild(t);
+ }
+ body.appendChild(bubble);row.append(avatar,body);chat.appendChild(row);if(role==="user")setupUserMessageActions(row,text);safeScrollBottom(true);return row;
+}
+function showTyping(){
+ if($("welcome"))$("welcome").style.display="none";
+ typingEl=document.createElement("div");typingEl.className="message assistant";
+ const av=document.createElement("div");av.className="avatar";av.textContent="✦";
+ const body=document.createElement("div");body.className="message-body";
+ const head=document.createElement("div");head.className="message-head";head.textContent=(modelNames[modelSelect.value]||"AI")+" · يعمل الآن";
+ const line=document.createElement("div");line.className="typing";
+ const dots=document.createElement("span");dots.className="dots";dots.innerHTML="<i></i><i></i><i></i>";
+ const label=document.createElement("span");label.textContent="جارٍ إنشاء الرد";
+ const timer=document.createElement("span");timer.style.marginRight="auto";timer.style.fontVariantNumeric="tabular-nums";timer.textContent="0.0 ث";
+ line.append(dots,label,timer);body.append(head,line);typingEl.append(av,body);chat.appendChild(typingEl);safeScrollBottom(true);
+ thinkingStart=performance.now();timerHandle=setInterval(()=>{if(timerElConnected(timer))timer.textContent=((performance.now()-thinkingStart)/1000).toFixed(1)+" ث"},100);
+}
+function timerElConnected(el){return el&&el.isConnected}
+function stopTyping(){if(timerHandle){clearInterval(timerHandle);timerHandle=null}if(typingEl){typingEl.remove();typingEl=null}return performance.now()-thinkingStart}
+function readableError(status,body){let detail=body;try{const j=JSON.parse(body);detail=j.error?.message||j.message||body}catch{}return "خطأ "+status+": "+String(detail).slice(0,500)}
+function enhancePhotorealisticPrompt(prompt){
+ const p=String(prompt||"").trim();
+ const explicitStyle=/(anime|manga|cartoon|illustration|watercolor|oil painting|sketch|pixel art|3d render|3d model|vector art|comic|أنمي|مانغا|كرتون|رسم|لوحة زيتية|ألوان مائية|سكتش|فن بكسل|تصميم ثلاثي الأبعاد)/i.test(p);
+ if(explicitStyle)return p;
+ return p+". Create a highly photorealistic, natural-looking photograph, not an illustration: physically accurate materials and textures, believable human anatomy and facial details when people are present, natural skin texture with pores and subtle imperfections, realistic hair strands, authentic environmental details, true-to-life colors, physically plausible lighting and shadows, natural depth of field, subtle lens characteristics, documentary/editorial photography quality, crisp but not over-sharpened, realistic dynamic range. Avoid the typical synthetic AI look, waxy skin, plastic surfaces, over-smoothed faces, uncanny eyes, malformed hands, duplicated objects, excessive symmetry, oversaturated colors, artificial glow, fake bokeh, and painterly textures. Preserve the exact subject, objects, count, action, and composition requested by the user.";
+}
+async function translatePromptToEnglish(prompt){
+ const original=String(prompt||"").trim();
+ if(!original || !/[\u0600-\u06FF]/.test(original))return original;
+ try{
+  const endpoint="https://api.mymemory.translated.net/get?q="+encodeURIComponent(original)+"&langpair=ar|en";
+  const res=await fetch(endpoint,{headers:{"Accept":"application/json"}});
+  if(!res.ok)throw new Error("translation HTTP "+res.status);
+  const data=await res.json();
+  const translated=data?.responseData?.translatedText;
+  return translated&&translated.trim()?translated.trim():original;
+ }catch(error){
+  return original;
+ }
+}
+function enhancePhotorealisticPrompt(prompt){
+ const p=String(prompt||"").trim();
+ const explicitStyle=/(anime|manga|cartoon|illustration|watercolor|oil painting|sketch|pixel art|3d render|3d model|vector art|comic|أنمي|مانغا|كرتون|رسم|لوحة زيتية|ألوان مائية|سكتش|فن بكسل|تصميم ثلاثي الأبعاد)/i.test(p);
+ if(explicitStyle)return p;
+ return p+", photorealistic, ultra detailed, 8k resolution, cinematic lighting, natural skin texture, shot on DSLR camera, high fidelity, hyper-realistic, masterpiece, award-winning photography";
+}
+async function buildImagePrompt(userPrompt){
+ return enhancePhotorealisticPrompt(await translatePromptToEnglish(userPrompt));
+}
+
+async function fetchPollinationsImage(prompt,key){
+ const seed=Math.floor(Math.random()*1000000);
+ let url="https://gen.pollinations.ai/image/"+encodeURIComponent(prompt)+
+  "?width=1280&height=1280&seed="+seed+"&nologo=true&model=flux";
+ if(key)url+="&key="+encodeURIComponent(key);
+
+ const image=new Image();
+ image.decoding="async";
+ image.referrerPolicy="no-referrer";
+ await new Promise((resolve,reject)=>{
+  let settled=false;
+  const timer=setTimeout(()=>{
+   if(settled)return;
+   settled=true;
+   image.src="";
+   reject(new Error("انتهت مهلة تحميل الصورة. تحقق من الاتصال ومفتاح Pollinations."));
+  },120000);
+  image.onload=()=>{
+   if(settled)return;
+   settled=true;clearTimeout(timer);
+   if(image.naturalWidth>0)resolve();
+   else reject(new Error("وصل رد بدون صورة صالحة"));
+  };
+  image.onerror=()=>{
+   if(settled)return;
+   settled=true;clearTimeout(timer);
+   reject(new Error("فشل تحميل الصورة من Pollinations. تحقق من المفتاح أو الرصيد أو جرّب وصفًا آخر."));
+  };
+  image.src=url;
+ });
+ return {url,image};
+}
+
+async function generatePollinationsImage(text){
+ const key=pollinationsKey||localStorage.getItem("pollinations_key")||"";
+ if(!key){
+  toast("أضف مفتاح خدمة الصور من الإعدادات أولًا");
+  $("sidebar").classList.add("open");
+  return;
+ }
+ addMessage(text,"user");
+ msgInput.value="";resizeInput();pendingFiles=[];pendingImages=[];renderAttachmentChips();
+ busy=true;sendBtn.disabled=true;
+ const row=document.createElement("article");row.className="message assistant";
+ const av=document.createElement("div");av.className="avatar";av.textContent="🎨";
+ const body=document.createElement("div");body.className="message-body";
+ const head=document.createElement("div");head.className="message-head";head.textContent="Mohammed AI";
+ const card=document.createElement("div");card.className="polli-card";
+ const preview=document.createElement("div");preview.className="polli-preview";
+ const scan=document.createElement("div");scan.className="polli-scan";
+ const loading=document.createElement("div");loading.className="polli-loading";
+ loading.innerHTML='<span>Mohammed AI يقوم بإنشاء صورتك&nbsp; <i></i><i></i><i></i></span>';
+ const img=document.createElement("img");img.alt="صورة أنشأها Mohammed AI";
+ preview.append(scan,img,loading);card.appendChild(preview);
+ const status=document.createElement("div");status.className="polli-status";
+ status.textContent="جاري ترجمة الوصف وتجهيز الصورة…";
+ card.appendChild(status);body.append(head,card);row.append(av,body);
+ chat.appendChild(row);chat.scrollTop=chat.scrollHeight;
+ try{
+  const englishPrompt=await buildImagePrompt(text);
+  let result=null,lastError=null;
+  for(let attempt=1;attempt<=5;attempt++){
+   status.textContent=`جاري إنشاء الصورة… المحاولة ${attempt} من 5`;
+   try{
+    result=await fetchPollinationsImage(englishPrompt,key);
+    break;
+   }catch(err){
+    lastError=err;
+    if(attempt<5){
+     status.textContent=`تعذّر التحميل في المحاولة ${attempt}… إعادة المحاولة (${attempt+1}/5)`;
+     await new Promise(r=>setTimeout(r,1000));
+    }
+   }
+  }
+  if(!result)throw lastError||new Error("فشل إنشاء الصورة");
+  img.src=result.url;
+  card.classList.add("done");loading.style.display="none";
+  status.textContent="اكتملت صورتك بواسطة Mohammed AI ✓";
+  const actions=document.createElement("div");actions.className="polli-actions";
+  const view=document.createElement("button");view.className="secondary";
+  view.type="button";view.textContent="رؤية الصورة";
+  view.onclick=()=>openPolliViewer(result.url);
+  const dl=document.createElement("button");dl.className="polli-download-btn";
+  dl.type="button";dl.textContent="⬇ تنزيل الصورة على الهاتف";
+  dl.onclick=()=>downloadPolliImage(result.url);
+  actions.append(view,dl);card.appendChild(actions);
+ }catch(err){
+  card.classList.add("done");loading.style.display="none";
+  status.textContent="تعذّر إنشاء الصورة: "+(err?.message||"خطأ غير معروف");
+  toast("فشل مولد الصور: "+(err?.message||"تحقق من المفتاح والاتصال"));
+ }finally{
+  busy=false;sendBtn.disabled=false;chat.scrollTop=chat.scrollHeight;
+ }
+}
+let viewerScale=1,viewerX=0,viewerY=0,viewerPointers=new Map(),viewerPinchStart=0,viewerPinchScale=1,viewerDragStart=null;
+function paintViewerImage(){
+ const image=document.getElementById("polliViewerImage");
+ if(image)image.style.transform=`translate3d(${viewerX}px,${viewerY}px,0) scale(${viewerScale})`;
+}
+function resetViewerTransform(){
+ viewerScale=1;viewerX=0;viewerY=0;viewerPointers.clear();viewerDragStart=null;viewerPinchStart=0;paintViewerImage();
+}
+function clampViewerPan(){
+ const image=document.getElementById("polliViewerImage");
+ const box=image?.parentElement;
+ if(!image||!box)return;
+ const bw=box.clientWidth,bh=box.clientHeight;
+ const iw=image.naturalWidth||image.width, ih=image.naturalHeight||image.height;
+ const dispW=Math.min(bw,iw)*viewerScale;
+ const dispH=Math.min(bh,ih)*viewerScale;
+ const maxX=Math.max(0,(dispW-bw)/2);
+ const maxY=Math.max(0,(dispH-bh)/2);
+ viewerX=Math.max(-maxX,Math.min(maxX,viewerX));
+ viewerY=Math.max(-maxY,Math.min(maxY,viewerY));
+}
+function setViewerZoom(next,cx,cy){
+ const image=document.getElementById("polliViewerImage");
+ const box=image?.parentElement;
+ const prev=viewerScale;
+ viewerScale=Math.max(1,Math.min(8,next));
+ if(viewerScale===1){viewerX=0;viewerY=0;}
+ else if(box&&cx!=null&&cy!=null){
+  const rect=box.getBoundingClientRect();
+  const ox=cx-rect.left-rect.width/2;
+  const oy=cy-rect.top-rect.height/2;
+  const ratio=viewerScale/prev;
+  viewerX=ox-(ox-viewerX)*ratio;
+  viewerY=oy-(oy-viewerY)*ratio;
+ }
+ clampViewerPan();
+ paintViewerImage();
+}
+function openPolliViewer(src){
+ const viewer=document.getElementById("polliViewer"),image=document.getElementById("polliViewerImage");
+ if(!viewer||!image)return;
+ image.src=src;
+ resetViewerTransform();
+ viewer.classList.add("open");
+}
+function closePolliViewer(){
+ const viewer=document.getElementById("polliViewer");
+ if(viewer)viewer.classList.remove("open");
+ resetViewerTransform();
+ stopHoldZoom();
+}
+function viewerDistance(){
+ const pts=[...viewerPointers.values()];
+ if(pts.length<2)return 0;
+ return Math.hypot(pts[0].x-pts[1].x,pts[0].y-pts[1].y);
+}
+function viewerCenter(){
+ const pts=[...viewerPointers.values()];
+ if(pts.length<2)return null;
+ return {x:(pts[0].x+pts[1].x)/2,y:(pts[0].y+pts[1].y)/2};
+}
+(function setupTouchViewer(){
+ const viewer=document.getElementById("polliViewer");
+ const image=document.getElementById("polliViewerImage");
+ const box=viewer?.querySelector(".polli-viewer-box");
+ if(!viewer||!image||!box)return;
+
+ image.addEventListener("pointerdown",e=>{
+  if(!viewer.classList.contains("open"))return;
+  if(e.pointerType==="mouse"&&e.button!==0)return;
+  e.preventDefault();
+  try{image.setPointerCapture(e.pointerId)}catch(_){}
+  viewerPointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(viewerPointers.size===1){
+   viewerDragStart={x:e.clientX,y:e.clientY,baseX:viewerX,baseY:viewerY};
+   image.style.cursor="grabbing";
+  }else if(viewerPointers.size===2){
+   viewerPinchStart=viewerDistance();
+   viewerPinchScale=viewerScale;
+   viewerDragStart=null;
+  }
+ });
+
+ window.addEventListener("pointermove",e=>{
+  if(!viewerPointers.has(e.pointerId))return;
+  viewerPointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(viewerPointers.size>=2){
+   const d=viewerDistance();
+   if(viewerPinchStart>0 && d>0){
+    const c=viewerCenter();
+    const target=viewerPinchScale*(d/viewerPinchStart);
+    setViewerZoom(target,c?.x,c?.y);
+   }
+  }else if(viewerDragStart && viewerScale>1){
+   viewerX=viewerDragStart.baseX+(e.clientX-viewerDragStart.x);
+   viewerY=viewerDragStart.baseY+(e.clientY-viewerDragStart.y);
+   clampViewerPan();
+   paintViewerImage();
+  }
+ },{passive:false});
+
+ const end=e=>{
+  if(!viewerPointers.has(e.pointerId))return;
+  viewerPointers.delete(e.pointerId);
+  try{image.releasePointerCapture(e.pointerId)}catch(_){}
+  if(viewerPointers.size===1){
+   const p=[...viewerPointers.values()][0];
+   viewerDragStart={x:p.x,y:p.y,baseX:viewerX,baseY:viewerY};
+   viewerPinchStart=0;
+  }else{
+   viewerDragStart=null;viewerPinchStart=0;
+   image.style.cursor="grab";
+  }
+ };
+ window.addEventListener("pointerup",end);
+ window.addEventListener("pointercancel",end);
+
+ viewer.addEventListener("touchstart",e=>{e.preventDefault()},{passive:false});
+ viewer.addEventListener("touchmove",e=>{e.preventDefault()},{passive:false});
+ viewer.addEventListener("gesturestart",e=>{e.preventDefault()},{passive:false});
+
+ image.addEventListener("wheel",e=>{
+  e.preventDefault();
+  setViewerZoom(viewerScale+(e.deltaY<0?0.2:-0.2),e.clientX,e.clientY);
+ },{passive:false});
+
+ image.addEventListener("dblclick",e=>{
+  e.preventDefault();
+  if(viewerScale>1)setViewerZoom(1);
+  else setViewerZoom(2,e.clientX,e.clientY);
+ });
+})();
+
+/* ==== أزرار تحريك الصورة يدويًا ==== */
+function setupPolliPan(){
+ const left=document.getElementById("polliPanLeft");
+ const right=document.getElementById("polliPanRight");
+ let timer=null, direction=0;
+ const STEP=8;
+ const tick=()=>{
+  if(!direction) return;
+  if(viewerScale<=1){ direction=0; return; }
+  viewerX += direction * STEP;
+  clampViewerPan();
+  paintViewerImage();
+  timer=requestAnimationFrame(tick);
+ };
+ const start=(dir,e)=>{
+  if(e) e.preventDefault();
+  direction=dir;
+  if(timer) cancelAnimationFrame(timer);
+  timer=requestAnimationFrame(tick);
+ };
+ const stop=()=>{ direction=0; if(timer){cancelAnimationFrame(timer);timer=null;} };
+
+ [left,right].forEach(btn=>{
+  if(!btn) return;
+  btn.addEventListener("pointerdown",e=>{ start(btn===left?-1:1,e); btn.setPointerCapture?.(e.pointerId); });
+  btn.addEventListener("pointerup",stop);
+  btn.addEventListener("pointercancel",stop);
+  btn.addEventListener("pointerleave",stop);
+  btn.addEventListener("lostpointercapture",stop);
+ });
+}
+
+/* ==== زوم مستمر عند الضغط المطول على ＋ أو − ==== */
+let holdZoomRAF=null, holdZoomDir=0, holdZoomStart=0, holdZoomBtn=null;
+function startHoldZoom(btn, dir){
+ stopHoldZoom();
+ holdZoomBtn=btn;
+ btn.classList.add("hold-zoom");
+ holdZoomDir=dir;
+ holdZoomStart=performance.now();
+ const loop=()=>{
+  if(!holdZoomDir) return;
+  const elapsed=performance.now()-holdZoomStart;
+  const speed=Math.min(0.07, 0.01 + elapsed/1800*0.06);
+  const image=document.getElementById("polliViewerImage");
+  const box=image?.parentElement;
+  if(box){
+   const rect=box.getBoundingClientRect();
+   setViewerZoom(viewerScale + holdZoomDir*speed, rect.left+rect.width/2, rect.top+rect.height/2);
+  }
+  if(viewerScale<=1 && holdZoomDir<0){ stopHoldZoom(); return; }
+  holdZoomRAF=requestAnimationFrame(loop);
+ };
+ loop();
+}
+function stopHoldZoom(){
+ if(holdZoomRAF){cancelAnimationFrame(holdZoomRAF);holdZoomRAF=null;}
+ holdZoomDir=0;
+ if(holdZoomBtn){holdZoomBtn.classList.remove("hold-zoom");holdZoomBtn=null;}
+}
+function setupHoldZoom(){
+ const tools=document.querySelectorAll(".polli-viewer-tools button");
+ tools.forEach(btn=>{
+  const label=btn.getAttribute("aria-label")||"";
+  let dir=0;
+  if(label.includes("تكبير")) dir=1;
+  else if(label.includes("تصغير")) dir=-1;
+  if(!dir) return;
+  const down=e=>{e.preventDefault();e.stopPropagation();startHoldZoom(btn,dir);};
+  const up=e=>{e.preventDefault();e.stopPropagation();stopHoldZoom();};
+  btn.addEventListener("pointerdown",down);
+  btn.addEventListener("pointerup",up);
+  btn.addEventListener("pointercancel",up);
+  btn.addEventListener("pointerleave",up);
+  btn.addEventListener("lostpointercapture",up);
+  btn.addEventListener("contextmenu",e=>e.preventDefault());
+ });
+}
+
+/* ==== لوحة المفاتيح: الأسهم لتحريك الصورة ==== */
+function setupPolliKeyboard(){
+ document.addEventListener("keydown",e=>{
+  const viewer=document.getElementById("polliViewer");
+  if(!viewer||!viewer.classList.contains("open"))return;
+  const step=40;
+  if(e.key==="ArrowRight"){ e.preventDefault(); if(viewerScale>1){viewerX-=step;clampViewerPan();paintViewerImage();} }
+  else if(e.key==="ArrowLeft"){ e.preventDefault(); if(viewerScale>1){viewerX+=step;clampViewerPan();paintViewerImage();} }
+  else if(e.key==="ArrowUp"){ e.preventDefault(); if(viewerScale>1){viewerY+=step;clampViewerPan();paintViewerImage();} }
+  else if(e.key==="ArrowDown"){ e.preventDefault(); if(viewerScale>1){viewerY-=step;clampViewerPan();paintViewerImage();} }
+  else if(e.key==="Escape"){ closePolliViewer(); }
+ });
+}
+
+setupPolliPan();
+setupHoldZoom();
+setupPolliKeyboard();
+
+async function downloadPolliImage(src){
+ let blobUrl=null;
+ const filename=`Mohammed-AI-${Date.now()}.png`;
+ try{
+  const res=await fetch(src,{mode:"cors",credentials:"omit"});
+  if(!res.ok)throw new Error("تعذّر جلب ملف الصورة من الخادم");
+  const blob=await res.blob();
+  const mime=blob.type||"image/png";
+  const ext=mime.includes("jpeg")?"jpg":(mime.split("/")[1]||"png").replace(/[^a-z0-9]/gi,"");
+  const file=new File([blob],`Mohammed-AI-${Date.now()}.${ext}`,{type:mime});
+  if(navigator.share && navigator.canShare && navigator.canShare({files:[file]})){
+   try{
+    await navigator.share({files:[file],title:"Mohammed AI",text:"الصورة التي أنشأها Mohammed AI"});
+    toast("اختر تطبيق الصور أو المعرض ثم اضغط حفظ");
+    return;
+   }catch(shareError){
+    if(shareError && shareError.name==="AbortError")return;
+   }
+  }
+  blobUrl=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=blobUrl;a.download=`Mohammed-AI-${Date.now()}.${ext}`;
+  a.style.display="none";document.body.appendChild(a);a.click();a.remove();
+  toast("بدأ تنزيل الصورة إلى ملفات التنزيلات على جهازك");
+ }catch(error){
+  const opened=window.open(src,"_blank","noopener,noreferrer");
+  if(opened){
+   toast("فتحنا الصورة الأصلية؛ من قائمة المتصفح اختر تنزيل الصورة أو حفظها");
+  }else{
+   const a=document.createElement("a");a.href=src;a.target="_blank";a.rel="noopener noreferrer";
+   document.body.appendChild(a);a.click();a.remove();
+   toast("تعذّر التنزيل المباشر بسبب قيود الخادم؛ افتح الصورة واحفظها من المتصفح");
+  }
+ }finally{
+  if(blobUrl)setTimeout(()=>URL.revokeObjectURL(blobUrl),10000);
+ }
+}
+function detectIntent(text,images,files){
+ const raw=(text||"").trim();
+ const t=raw.toLowerCase();
+
+ if(images && images.length) return "vision";
+
+ const imageAction=/(ارسم|ارسِم|اصنع|اصنعلي|سوي|سوّي|اعمل|اعملي|أنشئ|انشئ|صمّم|صمم|ولّد|ولد|طلّع|طلع|generate|create|draw|make|render|design)/i;
+ const imageNoun=/(صورة|صوره|رسم|رسمة|سيارة|سياره|bugatti|لامبورغيني|فيراري|منظر|شخصية|شخص|قطة|كلب|بيت|مدينة|شعار|خلفية|image|picture|photo|artwork|illustration|car|vehicle|logo|wallpaper|portrait|landscape)/i;
+ const explicitImage=/(صورة|صوره|image|picture|photo|artwork|illustration|wallpaper|portrait)/i.test(t);
+ const hasAction=imageAction.test(t);
+ const hasSubject=imageNoun.test(t);
+ if((hasAction && hasSubject) || (explicitImage && /(لـ|ل |عن|of|for|about)/i.test(t))) return "image";
+
+ const codeIntent=/(كود|اكواد|أكواد|سكربت|برمج|html|css|javascript|java|python|lua|code|script|website|موقع|تطبيق|برنامج|لعبة|صفحة ويب|مشروع|صلح الكود|صحح الكود|عدّل الكود|عدل الكود|اكتب لي كود|اكتب كود|اكتب سكربت|اصنع لعبة|أنشئ لعبة|انشئ لعبة|build me|make a website|develop|programming)/i.test(t);
+ const huge=/(ضخم|ضخمة|ضخما|كبير جدا|كبيرة جدا|متكامل جدا|عملاق|عملاقة|enterprise|large[- ]scale|massive|full[- ]scale|huge)/i.test(t);
+ if(codeIntent && huge) return "huge-code";
+ if(codeIntent) return "code";
+
+ if(files && files.length) return "file";
+ return "chat";
+}
+function routeModel(intent){
+ const ids={
+  chat:"meta-llama/llama-3.3-70b-instruct",
+  vision:"qwen/qwen3-vl-30b-a3b-instruct",
+  code:"cohere/north-mini-code:free",
+  "huge-code":"nvidia/nemotron-3-ultra-550b-a55b-20260604:free",
+  file:"meta-llama/llama-3.3-70b-instruct"
+ };
+ return ids[intent]||ids.chat;
+}
+function waitForIntent(ms=2000){
+ return new Promise(resolve=>setTimeout(resolve,ms));
+}
+async function sendMessage(){
+ const text=msgInput.value.trim();
+ if(!text || busy) return;
+
+ const files=[...pendingFiles], images=[...pendingImages];
+ busy=true;
+ sendBtn.disabled=true;
+ const oldSendText=sendBtn.innerHTML;
+
+ try{
+  await waitForIntent(2000);
+  const intent=detectIntent(text,images,files);
+
+  if(intent==="image"){
+   busy=false;
+   sendBtn.disabled=false;
+   sendBtn.innerHTML=oldSendText;
+   await generatePollinationsImage(text);
+   return;
+  }
+
+  if(!apiKey){
+   toast("أضف مفتاح OpenRouter واضغط حفظ المفتاح");
+   $("sidebar").classList.add("open");
+   return;
+  }
+
+  const chosenModel=routeModel(intent);
+  modelSelect.value=chosenModel;
+
+  addMessage(
+   text+
+   (files.length?"\n\n📎 "+files.map(f=>f.name).join(" · "):"")+
+   (images.length?"\n\n🖼️ "+images.map(f=>f.name).join(" · "):""),
+   "user",null,null,images.map(f=>URL.createObjectURL(f))
+  );
+  msgInput.value="";
+  pendingFiles=[];
+  pendingImages=[];
+  renderAttachmentChips();
+  resizeInput();
+
+  const live=makeLiveAssistant();
+  live.lab.innerHTML='<span class="thinking-word">يفكر...</span>';
+  live.tc.textContent="تم تحليل نوع الطلب بعد مهلة قصيرة. يجري الآن اختيار النموذج المناسب وإعداد المرفقات.";
+
+  try{
+   const parts=[];
+   for(const f of images){
+    const data=await imageDataURL(f);
+    parts.push({type:"image_url",image_url:{url:data}});
+   }
+   for(const f of files){
+    parts.push({type:"text",text:`\n\n[ملف مرفق: ${f.name}]\n${await fileToText(f)}`});
+   }
+
+   messages.push({role:"user",content:parts.length?[{type:"text",text},...parts]:text});
+
+   const generalSystem={
+    role:"system",
+    content:"أنت مساعد ذكي ومحادث طبيعي. أجب عن الحديث والأسئلة بشكل طبيعي ومباشر. لا تنشئ كودًا أو HTML أو ملفات أو مشاريع أو صورًا من تلقاء نفسك؛ لا تكتب كودًا إلا إذا طلب المستخدم ذلك بوضوح. لا تحوّل مجرد ذكر اسم سيارة أو شيء إلى طلب صورة. إذا كان الطلب غامضًا فاسأل سؤالًا قصيرًا للتوضيح. أجب بلغة المستخدم."
+   };
+   const codeSystem={
+    role:"system",
+    content:"أنت مساعد برمجة. المستخدم طلب مساعدة برمجية. اكتب تنفيذًا عمليًا كاملًا بقدر ما طلبه المستخدم، ولا تختصر أجزاء أساسية. إذا كان المشروع متعدد الملفات، ضع كل ملف في code fence منفصل واذكر اسمه في سطر قبله. لا تضف معاينة أو تشغيلًا أو أزرارًا؛ واجهة المستخدم تعرض زر نسخ فقط. لا تفترض متطلبات لم يطلبها المستخدم."
+   };
+   const visionSystem={
+    role:"system",
+    content:"أنت مساعد يفهم الصور. افحص الصورة المرفقة فعليًا، ثم أجب عن طلب المستخدم اعتمادًا على ما يظهر فيها. لا تدّع رؤية تفاصيل غير واضحة."
+   };
+
+   const extraSystem=intent==="vision"?[visionSystem]:(intent==="code"||intent==="huge-code"?[codeSystem]:[]);
+   const requestMessages=[generalSystem,...extraSystem,...messages];
+   const payload={model:chosenModel,messages:requestMessages,temperature:.65,max_tokens:intent==="huge-code"?24000:16384,stream:true};
+
+   const result=await startGenerationWorker(payload,apiKey,data=>{
+    if(data.replyDelta) live.lab.innerHTML='<span class="thinking-word">يكتب الرد...</span>';
+   });
+   if(!result.reply) throw new Error("وصل رد من النموذج دون نص ظاهر.");
+
+   messages.push({role:"assistant",content:result.reply});
+   live.think.classList.add("finished");
+   live.lab.textContent="اكتمل الرد";
+   live.tc.textContent="تم إنشاء الإجابة بنجاح";
+   const rendered=window.marked?marked.parse(result.reply):result.reply;
+   live.bubble.innerHTML=window.DOMPurify?DOMPurify.sanitize(rendered):rendered;
+   live.bubble.querySelectorAll("pre code").forEach(code=>{if(window.hljs)hljs.highlightElement(code)});
+   live.bubble.querySelectorAll("a").forEach(a=>{a.target="_blank";a.rel="noopener noreferrer"});
+   renderCodeFile(live.bubble,result.reply,false);
+   setStatus("جاهز",true);
+   safeScrollBottom();
+  }catch(err){
+   live.row.remove();
+   if(err.name!=="AbortError") addMessage(err.message||"حدث خطأ غير معروف","assistant");
+   setStatus("تعذّر إكمال الطلب");
+  }
+ }catch(err){
+  if(err.name!=="AbortError") toast(err.message||"حدث خطأ أثناء تحليل الطلب");
+ }finally{
+  activeController=null;
+  busy=false;
+  sendBtn.disabled=false;
+  sendBtn.innerHTML=oldSendText;
+  safeScrollBottom();
+ }
+}
+function resizeInput(){msgInput.style.height="auto";msgInput.style.height=Math.min(msgInput.scrollHeight,180)+"px"}
+msgInput.addEventListener("input",resizeInput);
+msgInput.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendMessage()}});
+sendBtn.onclick=sendMessage;
+loadKey();loadPollinationsKey();syncModel();syncThinking();
+</script>
+<div class="polli-viewer" id="polliViewer" onclick="if(event.target===this)closePolliViewer()">
+  <div class="polli-viewer-box">
+    <button class="polli-viewer-close" type="button" onclick="closePolliViewer()" aria-label="إغلاق">✕</button>
+    <button class="polli-nav prev" id="polliPanLeft" type="button" aria-label="تحريك الصورة لليسار">‹</button>
+    <button class="polli-nav next" id="polliPanRight" type="button" aria-label="تحريك الصورة لليمين">›</button>
+    <img id="polliViewerImage" alt="الصورة التي أنشأها Mohammed AI"/>
+    <div class="polli-viewer-tools" aria-label="أدوات تكبير الصورة">
+      <button type="button" onclick="setViewerZoom(viewerScale+0.35)" aria-label="تكبير">＋</button>
+      <button type="button" onclick="setViewerZoom(viewerScale-0.35)" aria-label="تصغير">−</button>
+      <button type="button" onclick="resetViewerTransform()" aria-label="إظهار الصورة كاملة">↺</button>
+    </div>
+    <div class="polli-viewer-hint">اسحب بإصبع واحد لتحريك الصورة · بإصبعين للتكبير · الأسهم للتحريك · اضغط مطوّلًا على ＋ أو − للزوم المستمر</div>
+  </div>
+</div>
+</body>
+</html>
